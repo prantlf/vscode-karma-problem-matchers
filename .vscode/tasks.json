@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "typescript",
+      "tsconfig": "tsconfig.json",
+      "problemMatcher": "$tsc",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "watch",
+      "type": "typescript",
+      "tsconfig": "tsconfig.json",
+      "option": "watch",
+      "problemMatcher": "$tsc-watch",
+      "group": "build"
+    },
+    {
+      "label": "test",
+      "type": "shell",
+			"command": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+			"options": {
+				"env": {
+					"TS_NODE_FILES": "true"
+				},
+				"cwd": "${workspaceFolder}"
+			},
+      "args": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "build/test/helpers/patternSeq",
+        "--colors",
+        "test/**/*.test.ts",
+      ],
+      "problemMatcher": {
+        "owner": "typescript",
+				"fileLocation": "relative",
+        "severity": "error",
+        "pattern": [
+					{
+						"regexp": "^\\s*\\d+\\) \\S",
+					},
+					{
+						"regexp": "^\\s*(\\S.*):$",
+						"code": 1,
+					},
+					{
+						"regexp": "^\\s*\\w*Error: (.+)",
+						"message": 1
+					},
+					{
+            "regexp": "at \\S+ \\(([^:]+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+					}
+				],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "> Executing task:",
+          "endsPattern": " \\d+ (?:passing|failing)"
+        }
+      },
+      "group": "test"
+    }
+  ]
+}

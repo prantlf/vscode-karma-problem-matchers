@@ -1,0 +1,5 @@
+{
+  "name": "karma-problem-matchers-example",
+  "private": true,
+  "description": "Demonstrates the VS Code problem matchers for Karma with various browsers and reporters."
+}

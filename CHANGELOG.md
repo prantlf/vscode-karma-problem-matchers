@@ -1,7 +1,9 @@
-# Change Log
-All notable changes to the "blabla2" extension will be documented in this file.
+# Changelog
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## 1.0.0
 
-## [Unreleased]
-- Initial release
+This the first release after forking [the original project](https://github.com/rctay/vscode-karma-problem-matcher). This project will expand the support of Karma frameworks, reporters and browsers beyond the original support for Jasmine, `progress` and Chrome.
+
+* Add support for Mocha, Chai, Expect, should.js and power-assert frameworks.
+* Add support for the `brief` reporter with Jasmine.
+* Add support for the Firefox browser.

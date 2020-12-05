@@ -1,34 +1,62 @@
 {
-  "name": "karma-problem-matcher",
-  "displayName": "Karma Problem Matcher",
-  "description": "Capture errors from Karma tests running in Visual Studio Code",
-  "version": "1.0.1",
-  "license": "MIT",
-  "publisher": "rctay",
+  "name": "karma-problem-matchers",
+  "displayName": "Karma Problem Matchers",
+  "description": "Capture errors from tests written with Jasmine, Mocha or other test framework and run by Karma from Visual Studio Code.",
+  "version": "1.0.0",
+  "icon": "images/logo.png",
+  "author": "Ferdinand Prantl <prantlf@gmail.com> (http://prantl.tk/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rctay/vscode-karma-problem-matcher"
+    "url": "https://github.com/prantlf/vscode-karma-problem-matchers.git"
   },
-  "icon": "images/karma-logo.png",
+  "homepage": "https://github.com/prantlf/vscode-karma-problem-matchers#readme",
+  "bugs": "https://github.com/prantlf/vscode-karma-problem-matchers/issues",
+  "license": "MIT",
+  "keywords": [
+    "vscode-extension",
+    "vscode-settings",
+    "problem-matcher",
+    "karma",
+    "karma-jasmine",
+    "karma-mocha",
+    "jasmine",
+    "jasmine-tests",
+    "mocha",
+    "mocha-tests",
+    "tests",
+    "vscode"
+  ],
+  "publisher": "prantlf",
   "engines": {
     "vscode": "^1.29.0"
   },
   "categories": [
-    "Programming Languages"
+    "Other"
   ],
   "contributes": {
     "problemMatchers": [
       {
-        "name": "karma-jasmine2",
-        "owner": "typescript",
+        "name": "karma-jasmine-progress",
+        "owner": "javascript",
         "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
         "pattern": [
           {
-            "regexp": "\\s+(Expected .*)",
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(?:Error: )?(Expected .*)",
             "message": 1
           },
           {
-            "regexp": "[^\\(]*\\(http://[^:]+:\\d+/(.*)\\?:(\\d+):(\\d+)\\)",
+            "regexp": "^\\s*(?:at )?<Jasmine>"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
             "file": 1,
             "line": 2,
             "column": 3
@@ -36,28 +64,32 @@
         ],
         "background": {
           "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(^\\s+\\d+%\\s+(compiling|building))|(Executed \\d+)"
-          },
-          "endsPattern": {
-            "regexp": "^TOTAL: \\d+"
-          }
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
         }
       },
       {
-        "name": "karma-jasmine3",
-        "owner": "typescript",
+        "name": "karma-jasmine2-progress-chrome",
+        "owner": "javascript",
         "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
         "pattern": [
           {
-            "regexp": "\\s+(Expected .*)",
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
             "message": 1
           },
           {
-            "regexp": "^\\s+at <Jasmine>$"
+            "regexp": "^\\s*Error: (Expected .*)"
           },
           {
-            "regexp": "[^\\(]*\\(http://[^:]+:\\d+/(.*)\\?:(\\d+):(\\d+)\\)",
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)\\)",
             "file": 1,
             "line": 2,
             "column": 3
@@ -65,38 +97,1017 @@
         ],
         "background": {
           "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(^\\s+\\d+%\\s+(compiling|building))|(Executed \\d+)"
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-jasmine2-progress-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
           },
-          "endsPattern": {
-            "regexp": "^TOTAL: \\d+"
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
           }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-jasmine291-progress",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-jasmine1-progress-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*Error: (Expected .*)"
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-jasmine1-progress-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*jasmine"
+          },
+          {
+            "regexp": "^\\s*jasmine"
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-mocha-assert-progress",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(?:AssertionError: )?(.*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-mocha-chai-progress-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*AssertionError: (expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-mocha-chai-progress-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*\\S"
+          },
+          {
+            "regexp": "^\\s*\\S"
+          },
+          {
+            "regexp": "^\\s*\\S"
+          },
+          {
+            "regexp": "^\\s*\\S"
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-mocha-expect-progress",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(?:Error: )?(expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(?:at )?Assertion"
+          },
+          {
+            "regexp": "^\\s*(?:at )?Assertion"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-mocha-power-assert-progress",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(?:AssertionError:|#)"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(assert.*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(\\|)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(.*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-mocha-should-progress",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(?:AssertionError: )?(expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at )?"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      },
+      {
+        "name": "karma-jasmine-brief",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(?:Error: )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "(?:at )?<Jasmine>"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine2-brief-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "Error: Expected .*"
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine2-brief-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine291-brief-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine291-brief-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine1-brief-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "Error: Expected .*"
+          },
+          {
+            "regexp": "^\\s*at "
+          },
+          {
+            "regexp": "^\\s*at "
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine1-brief-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*(.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "(?:\\d+\\) )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*jasmine"
+          },
+          {
+            "regexp": "^\\s*jasmine"
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)\\)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+total"
+        }
+      },
+      {
+        "name": "karma-jasmine-mocha",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(?:Error: )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(?:at )?<Jasmine>"
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-jasmine2-mocha-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*Error: (Expected .*)"
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-jasmine2-mocha-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-jasmine291-mocha",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(?:Error: )?(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*(?:at [^ ]+ \\(|@)(.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-jasmine1-mocha-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*Error: Expected .*"
+          },
+          {
+            "regexp": "^\\s*at new jasmine"
+          },
+          {
+            "regexp": "^\\s*at "
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-jasmine1-mocha-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*jasmine"
+          },
+          {
+            "regexp": "^\\s*jasmine"
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-mocha-chai-mocha-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*AssertionError: (expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-mocha-chai-mocha-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✖ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*(expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*AssertionError@"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-mocha-chai-spec-chrome",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✗ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*AssertionError: (expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
+        }
+      },
+      {
+        "name": "karma-mocha-chai-spec-firefox",
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^\\s*✗ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*(expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*AssertionError@"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*"
+          },
+          {
+            "regexp": "^\\s*@(.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^\\s*\\d+ test(?:s)? completed|failed"
         }
       }
     ]
   },
   "scripts": {
     "compile": "tsc -p .",
-    "watch": "tsc -watch -p ./",
-    "test": "npm run test:only",
-    "test:only": "TS_NODE_FILES=true npx mocha --require ts-node/register --require test/helpers/patternSeq test/**/*.test.ts",
-    "test:js": "cd build && npx mocha --require test/helpers/patternSeq test/**/*.test.js",
-    "check": "tslint --project ./tsconfig.json",
+    "watch": "tsc -watch -p .",
+    "test": "TS_NODE_FILES=true mocha -r ts-node/register -r build/test/helpers/patternSeq test/**/*.test.ts",
+    "check": "tslint -p tsconfig.json",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^2.2.42",
-    "@types/node": "^8.10.25",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-microsoft-contrib": "^6.0.0",
-    "tslint-no-unused-expression-chai": "^0.1.4",
-    "typescript": "~3.1.0"
-  },
-  "dependencies": {}
+    "@types/chai": "4.2.14",
+    "@types/mocha": "8.0.4",
+    "@types/node": "14.14.10",
+    "chai": "4.2.0",
+    "mocha": "8.2.1",
+    "ts-node": "9.1.0",
+    "tslint": "5.20.1",
+    "tslint-microsoft-contrib": "6.2.0",
+    "tslint-no-unused-expression-chai": "0.1.4",
+    "typescript": "4.1.2"
+  }
 }

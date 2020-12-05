@@ -1,0 +1,22 @@
+{
+  "name": "karma-mocha-chai-problem-matcher-example",
+  "private": true,
+  "description": "Demonstrates the VS Code problem matcher for Karma/Mocha/Chai with various browsers and reporters.",
+  "scripts": {
+    "test": "karma start"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "karma": "5.2.3",
+    "karma-brief-reporter": "0.2.1",
+    "karma-chai": "0.1.0",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-firefox-launcher": "2.1.0",
+    "karma-mocha": "2.0.1",
+    "karma-mocha-reporter": "2.2.5",
+    "karma-requirejs": "1.1.0",
+    "karma-spec-reporter": "0.0.32",
+    "mocha": "8.2.1",
+    "requirejs": "2.3.6"
+  }
+}

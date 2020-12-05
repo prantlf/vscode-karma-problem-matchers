@@ -1,0 +1,663 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Debug Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --auto-watch --no-single-run --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --auto-watch --no-single-run --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "<Jasmine>"
+          },
+          {
+            "regexp": "@([^:]+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": false,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      }
+    },
+    {
+      "label": "Debug Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --auto-watch --no-single-run",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --auto-watch --no-single-run"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "Error: (Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "at <Jasmine>"
+          },
+          {
+            "regexp": "at [^ ]+ \\(([^:]+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": false,
+          "beginsPattern": "^\\d+",
+          "endsPattern": "^TOTAL:"
+        }
+      }
+    },
+    {
+      "label": "Run Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadless",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadless"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": {
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "(Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "<Jasmine>"
+          },
+          {
+            "regexp": "@([^:]+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "Run Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": {
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "\\) (.+) FAILED",
+            "code": 1
+          },
+          {
+            "regexp": "Error: (Expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "at <Jasmine>"
+          },
+          {
+            "regexp": "at [^ ]+ \\(([^:]+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=spec",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief"
+      },
+      "options": {
+        "cwd": "test-mocha-chai"
+      },
+      "problemMatcher": {
+        "owner": "javascript",
+        "severity": "error",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": [
+          {
+            "regexp": "^\\s*✗ (.*)",
+            "code": 1
+          },
+          {
+            "regexp": "^\\s*AssertionError: (expected .*)",
+            "message": 1
+          },
+          {
+            "regexp": "^\\s*at [^ ]+ \\((.+):(\\d+):(\\d+)",
+            "file": 1,
+            "line": 2,
+            "column": 3
+          }
+        ]
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Jasmine/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": "$karma-jasmine-progress"
+    },
+    {
+      "label": "Jasmine/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": "$karma-jasmine-progress"
+    },
+    {
+      "label": "Jasmine 2/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-jasmine2"
+      },
+      "problemMatcher": "$karma-jasmine2-progress-chrome"
+    },
+    {
+      "label": "Jasmine 2/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine2"
+      },
+      "problemMatcher": "$karma-jasmine2-progress-firefox"
+    },
+    {
+      "label": "Jasmine 1/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-jasmine1"
+      },
+      "problemMatcher": "$karma-jasmine1-progress-chrome"
+    },
+    {
+      "label": "Jasmine 1/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine1"
+      },
+      "problemMatcher": "$karma-jasmine1-progress-firefox"
+    },
+    {
+      "label": "Mocha/assert/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-mocha-assert"
+      },
+      "problemMatcher": "$karma-mocha-assert-progress"
+    },
+    {
+      "label": "Mocha/assert/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-assert"
+      },
+      "problemMatcher": "$karma-mocha-assert-progress"
+    },
+    {
+      "label": "Mocha/Chai/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-mocha-chai"
+      },
+      "problemMatcher": "$karma-mocha-chai-progress-chrome"
+    },
+    {
+      "label": "Mocha/Chai/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-chai"
+      },
+      "problemMatcher": "$karma-mocha-chai-progress-firefox"
+    },
+    {
+      "label": "Mocha/Expect/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-mocha-expect"
+      },
+      "problemMatcher": "$karma-mocha-expect-progress"
+    },
+    {
+      "label": "Mocha/Expect/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-expect"
+      },
+      "problemMatcher": "$karma-mocha-expect-progress"
+    },
+    {
+      "label": "Mocha/power-assert/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-mocha-power-assert"
+      },
+      "problemMatcher": "$karma-mocha-power-assert-progress"
+    },
+    {
+      "label": "Mocha/power-assert/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-power-assert"
+      },
+      "problemMatcher": "$karma-mocha-power-assert-progress"
+    },
+    {
+      "label": "Mocha/should.js/progress/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start"
+      },
+      "options": {
+        "cwd": "test-mocha-should"
+      },
+      "problemMatcher": "$karma-mocha-should-progress"
+    },
+    {
+      "label": "Mocha/should.js/progress/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-should"
+      },
+      "problemMatcher": "$karma-mocha-should-progress"
+    },
+    {
+      "label": "Jasmine/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": "$karma-jasmine-progress"
+    },
+    {
+      "label": "Jasmine/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": "$karma-jasmine-progress"
+    },
+    {
+      "label": "Jasmine 2/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-jasmine2"
+      },
+      "problemMatcher": "$karma-jasmine2-progress-chrome"
+    },
+    {
+      "label": "Jasmine 2/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine2"
+      },
+      "problemMatcher": "$karma-jasmine2-progress-firefox"
+    },
+    {
+      "label": "Jasmine 1/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-jasmine1"
+      },
+      "problemMatcher": "$karma-jasmine1-progress-chrome"
+    },
+    {
+      "label": "Jasmine 1/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine1"
+      },
+      "problemMatcher": "$karma-jasmine1-progress-firefox"
+    },
+    {
+      "label": "Mocha/assert/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-mocha-assert"
+      },
+      "problemMatcher": "$karma-mocha-assert-progress"
+    },
+    {
+      "label": "Mocha/assert/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-assert"
+      },
+      "problemMatcher": "$karma-mocha-assert-progress"
+    },
+    {
+      "label": "Mocha/Chai/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-mocha-chai"
+      },
+      "problemMatcher": "$karma-mocha-chai-progress-chrome"
+    },
+    {
+      "label": "Mocha/Chai/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-chai"
+      },
+      "problemMatcher": "$karma-mocha-chai-progress-firefox"
+    },
+    {
+      "label": "Mocha/Expect/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-mocha-expect"
+      },
+      "problemMatcher": "$karma-mocha-expect-progress"
+    },
+    {
+      "label": "Mocha/Expect/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-expect"
+      },
+      "problemMatcher": "$karma-mocha-expect-progress"
+    },
+    {
+      "label": "Mocha/power-assert/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-mocha-power-assert"
+      },
+      "problemMatcher": "$karma-mocha-power-assert-progress"
+    },
+    {
+      "label": "Mocha/power-assert/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-power-assert"
+      },
+      "problemMatcher": "$karma-mocha-power-assert-progress"
+    },
+    {
+      "label": "Mocha/should.js/dots/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots"
+      },
+      "options": {
+        "cwd": "test-mocha-should"
+      },
+      "problemMatcher": "$karma-mocha-should-progress"
+    },
+    {
+      "label": "Mocha/should.js/dots/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=dots --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=dots --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-mocha-should"
+      },
+      "problemMatcher": "$karma-mocha-should-progress"
+    },
+    {
+      "label": "Jasmine/brief/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=brief",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": "$karma-jasmine-brief"
+    },
+    {
+      "label": "Jasmine/brief/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=brief --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine"
+      },
+      "problemMatcher": "$karma-jasmine-brief"
+    },
+    {
+      "label": "Jasmine 1/brief/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=brief",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief"
+      },
+      "options": {
+        "cwd": "test-jasmine1"
+      },
+      "problemMatcher": "$karma-jasmine1-brief-chrome"
+    },
+    {
+      "label": "Jasmine 1/brief/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=brief --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine1"
+      },
+      "problemMatcher": "$karma-jasmine1-brief-firefox"
+    },
+    {
+      "label": "Jasmine 2/brief/Chrome",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=brief",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief"
+      },
+      "options": {
+        "cwd": "test-jasmine2"
+      },
+      "problemMatcher": "$karma-jasmine2-brief-chrome"
+    },
+    {
+      "label": "Jasmine 2/brief/Firefox",
+      "type": "shell",
+      "command": "./node_modules/.bin/karma start --reporters=brief --browsers=FirefoxHeadlessDebug",
+      "windows": {
+        "command": ".\\node_modules\\.bin\\karma start --reporters=brief --browsers=FirefoxHeadlessDebug"
+      },
+      "options": {
+        "cwd": "test-jasmine2"
+      },
+      "problemMatcher": "$karma-jasmine2-brief-firefox"
+    }
+  ]
+}
