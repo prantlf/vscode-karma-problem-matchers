@@ -1,6 +1,6 @@
 # VS Code Karma Problem Matchers
 
-[<img src=https://raw.githubusercontent.com/prantlf/vscode-karma-problem-matchers/master/logo.png height=20 alt=Logo>][from the marketplace]
+[<img src=https://raw.githubusercontent.com/prantlf/vscode-karma-problem-matchers/master/images/logo.png height=20 alt=Logo>][from the marketplace]
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Build Status](https://github.com/prantlf/vscode-karma-problem-matchers/workflows/Test/badge.svg)](https://github.com/prantlf/vscode-karma-problem-matchers/actions)
 
@@ -147,6 +147,12 @@ All problem matchers introduced by this package alphabetically: `karma-jasmine-b
 ## Example
 
 You can have a look at a [testing project example]. It is meant for testing the problem matchers and not to demonstrate an actual library, but it might help you to set up your project and your tasks and launchers, although is contains many tasks for investigation purposes.
+
+## License
+
+Copyright (c) 2020 Ferdinand Prantl
+
+Licensed under the MIT license.
 
 [Visual Studio Code]: https://code.visualstudio.com/
 [from the marketplace]: https://marketplace.visualstudio.com/items?itemName=prantlf.karma-problem-matchers
